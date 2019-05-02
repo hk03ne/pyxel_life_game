@@ -23,10 +23,12 @@ class App:
     snapshot = copy.deepcopy(self.world)
  
     for y, row in enumerate(snapshot):
+      # 上端と下端はスキップ
       if y == 0 or y == len(snapshot) - 1:
         continue
 
       for x, cell in enumerate(row):
+        # 左端と右端はスキップ
         if x == 0 or x == len(row) - 1:
           continue
 
@@ -51,12 +53,16 @@ class App:
 
         # セルの生死を判定する
         if cell == 0 and count == 3:
+          # 誕生
           self.world[y][x] = 1
         elif cell and count < 2:
+          # 過疎による死亡
           self.world[y][x] = 0
         elif cell == 1 and (count == 2 or count == 3):
+          # 生存
           self.world[y][x] = 1
         elif cell and 3 < count:
+          # 過密による死亡
           self.world[y][x] = 0
 
   # 世界を描画する
