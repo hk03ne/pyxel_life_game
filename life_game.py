@@ -1,10 +1,11 @@
+import sys
 import pyxel
 import pandas
 import copy
 
 class App:
   def __init__(self):
-    self.world = pandas.read_csv("world.csv", header=None).values.tolist()
+    self.world = pandas.read_csv(sys.argv[1], header=None).values.tolist()
     pyxel.init(len(self.world[0]), len(self.world), caption="Life Game", fps = 1)
     pyxel.run(self.update, self.draw)
 
