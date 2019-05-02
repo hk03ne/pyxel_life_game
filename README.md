@@ -2,8 +2,8 @@
 
 ## About
 
-life game written in pyxel
+- life game implemented in python3 and pyxel(https://github.com/kitao/pyxel)
 
 ## Rules
 
-- view: https://en.m.wikipedia.org/wiki/Conway%27s_Game_of_Life
+- see https://en.m.wikipedia.org/wiki/Conway%27s_Game_of_Life
