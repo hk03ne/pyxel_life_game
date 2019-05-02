@@ -1,5 +1,6 @@
 import pyxel
 import pandas
+import copy
 
 APP_WIDTH = 150
 APP_HEIGHT = 120
@@ -13,7 +14,7 @@ class App:
   def update(self):
     if pyxel.btnp(pyxel.KEY_Q):
       pyxel.quit()
-    #self.update_world()
+    self.update_world()
 
   def draw(self):
     pyxel.cls(0)
@@ -21,8 +22,11 @@ class App:
   
   # 世界を更新する
   def update_world(self):
-    for y, row in enumerate(self.world):
-      if y == 0 or y == len(self.world) - 1:
+    # 現在状態の保存
+    snapshot = copy.deepcopy(self.world)
+ 
+    for y, row in enumerate(snapshot):
+      if y == 0 or y == len(snapshot) - 1:
         continue
 
       for x, cell in enumerate(row):
@@ -31,21 +35,21 @@ class App:
 
         # 隣接する生きているセルを数える
         count = 0
-        if self.world[y-1][x-1]:
+        if snapshot[y-1][x-1]:
           count = count + 1
-        if self.world[y-1][x]:
+        if snapshot[y-1][x]:
           count = count + 1
-        if self.world[y-1][x+1]:
+        if snapshot[y-1][x+1]:
           count = count + 1
-        if self.world[y][x-1]:
+        if snapshot[y][x-1]:
           count = count + 1
-        if self.world[y][x+1]:
+        if snapshot[y][x+1]:
           count = count + 1
-        if self.world[y+1][x-1]:
+        if snapshot[y+1][x-1]:
           count = count + 1
-        if self.world[y+1][x]:
+        if snapshot[y+1][x]:
           count = count + 1
-        if self.world[y+1][x+1]:
+        if snapshot[y+1][x+1]:
           count = count + 1
 
         # セルの生死を判定する
@@ -53,7 +57,7 @@ class App:
           self.world[y][x] = 1
         elif cell and count < 2:
           self.world[y][x] = 0
-        elif cell and (count == 2 or count == 3):
+        elif cell == 1 and (count == 2 or count == 3):
           self.world[y][x] = 1
         elif cell and 3 < count:
           self.world[y][x] = 0
@@ -64,7 +68,5 @@ class App:
       for x, cell in enumerate(row):
         if cell:
           pyxel.pix(x, y, 3)
-        print(x,y,cell)
-    print(pyxel.frame_count)
 
 App()
