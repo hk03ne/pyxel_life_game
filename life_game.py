@@ -17,9 +17,9 @@ class App:
     pyxel.cls(0)
     self.draw_world()
   
-  # $B@$3&$r99?7$9$k(B
+  # 世界を更新する
   def update_world(self):
-    # $B8=:_>uBV$NJ]B8(B
+    # 現在状態の保存
     snapshot = copy.deepcopy(self.world)
  
     for y, row in enumerate(snapshot):
@@ -30,7 +30,7 @@ class App:
         if x == 0 or x == len(row) - 1:
           continue
 
-        # $BNY@\$9$k@8$-$F$$$k%;%k$r?t$($k(B
+        # 隣接する生きているセルを数える
         count = 0
         if snapshot[y-1][x-1]:
           count = count + 1
@@ -49,7 +49,7 @@ class App:
         if snapshot[y+1][x+1]:
           count = count + 1
 
-        # $B%;%k$N@8;`$rH=Dj$9$k(B
+        # セルの生死を判定する
         if cell == 0 and count == 3:
           self.world[y][x] = 1
         elif cell and count < 2:
@@ -59,7 +59,7 @@ class App:
         elif cell and 3 < count:
           self.world[y][x] = 0
 
-  # $B@$3&$rIA2h$9$k(B
+  # 世界を描画する
   def draw_world(self):
     for y, row in enumerate(self.world):
       for x, cell in enumerate(row):
