@@ -2,9 +2,6 @@ import pyxel
 import pandas
 import copy
 
-APP_WIDTH = 150
-APP_HEIGHT = 120
-
 class App:
   def __init__(self):
     self.world = pandas.read_csv("world.csv", header=None).values.tolist()
