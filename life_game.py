@@ -7,7 +7,6 @@ APP_HEIGHT = 120
 class App:
   def __init__(self):
     self.world = pandas.read_csv("world.csv").values.tolist()
-    #pyxel.init(APP_WIDTH, APP_HEIGHT, caption="Life Game", fps = 1)
     pyxel.init(len(self.world[0]), len(self.world), caption="Life Game", fps = 1)
     pyxel.run(self.update, self.draw)
 
@@ -65,6 +64,6 @@ class App:
       for x, cell in enumerate(row):
         if cell:
           pyxel.pix(x, y, 3)
-    pyxel.text(0, APP_HEIGHT-5, str(pyxel.frame_count),1)
+    print(pyxel.frame_count)
 
 App()
