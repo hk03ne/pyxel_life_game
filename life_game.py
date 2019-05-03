@@ -59,7 +59,7 @@ class App:
         elif cell and count < 2:
           # 過疎による死亡
           self.world[y][x] = 0
-        elif cell == 1 and (count == 2 or count == 3):
+        elif cell and (count == 2 or count == 3):
           # 生存
           self.world[y][x] = 1
         elif cell and 3 < count:
