@@ -12,7 +12,7 @@ python3 pyxel_life_game.py [imputfile]
 
 ### Example
 
-to generate Trafic Light(http://www.conwaylife.com/wiki/Traffic_light):
+to generate Traffic Light(http://www.conwaylife.com/wiki/Traffic_light):
 
 ```
 python3 pyxel_life_game.py trafic_light.csv
